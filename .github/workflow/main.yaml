@@ -1,0 +1,34 @@
+name: Publish website to cPanel
+on:
+push:
+branches:
+    - main
+jobs:
+     FTP-Deploy-Action:
+         name: FTP Deploy Action
+         runs-on: ubuntu-latest
+
+         steps: - name: Checkout code
+         uses: actions/checkout@v2.1.0
+         with:
+                fetch-depth: 2
+         - name: Install lftp
+            run: sudo apt-get install -y lftp
+
+          - name: Deploy to FTP server
+             env:
+                   FTP_SERVER: ${{ secrets.FTP_SERVER }}
+                   FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+                   FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+                   LOCAL_DIR: "./"
+                   REMOTE_DIR: "/public_html"
+
+           run: | 
+                 lftp -f " 
+                 set ssl:verify-certificate no 
+                 open $FTP_SERVER 
+                 user $FTP_USERNAME $FTP_PASSWORD 
+                 lcd $LOCAL_DIR 
+                 cd $REMOTE_DIR 
+                 mirror --reverse --delete --verbose --exclude .ftpquota 
+                 bye "
