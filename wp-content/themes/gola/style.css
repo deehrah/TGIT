@@ -435,7 +435,10 @@ h1, h2, h3, h4, h5, h6 {
     .primary-menu-inner {
         width: 100%;
         max-width: 1570px;
-        padding: 27px 0;
+        padding-top: 27px;
+        padding-right: 0px;
+        padding-bottom: 27px;
+        padding-left: 100px;
     }
 
     #pr-nav.navbar-fixed .primary-menu-inner {
@@ -1938,7 +1941,7 @@ h1 {
     .navbar-expand-lg .navbar-nav {
         width: 100%;
         justify-content: var(--header-menu-position);
-        margin-left: 40px;
+        margin-left: 100px;
     }
 
     .header-icons {
@@ -5542,7 +5545,7 @@ form .woocommerce-error {
     .ft-col-1,
     .ft-col-2,
     .ft-col-3 {
-        padding-left: 2rem;
+        padding-left: 6rem;
         padding-right: 2rem;
     }
 
